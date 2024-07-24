@@ -21,7 +21,7 @@ export class EventMService {
       }
     })
     if(!user){
-      throw new UnauthorizedException("Wrong Login Credentials")
+      throw new UnauthorizedException("Wrong Credentials")
     }
     return "Login Successful"
   }

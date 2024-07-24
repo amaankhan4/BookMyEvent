@@ -7,9 +7,14 @@ import { UserLoginDto,UserSignUpDto,UserUpdateDto } from './dto/user-dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
-  create(@Body() createUserDto: Prisma.userCreateInput) {
-    return this.usersService.create(createUserDto);
+  @Post('login')
+  login(@Body() loginUserDto: UserLoginDto) {
+    return this.usersService.login(loginUserDto);
+  }
+
+  @Post('signup')
+  sugnup(@Body() createuserdto : UserSignUpDto){
+    return this.usersService.signup(createuserdto)
   }
 
 

@@ -8,10 +8,10 @@ body {
     align-items: center;
     height: 100dvh;
   }
-  h1{
+  .formTitle{
     display: flex;
     justify-content: center;
-    align-items: center;
+    justify-items: center;
   }
   
   .auth-container {

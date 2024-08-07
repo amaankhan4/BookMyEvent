@@ -16,15 +16,4 @@ export class UsersController {
   sugnup(@Body() createuserdto : UserSignUpDto){
     return this.usersService.signup(createuserdto)
   }
-
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: Prisma.userUpdateInput) {
-    return this.usersService.update(+id, updateUserDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
-  }
 }

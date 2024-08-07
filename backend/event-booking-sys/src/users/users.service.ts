@@ -1,6 +1,5 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
-import { Prisma } from '@prisma/client';
 import { UserLoginDto,UserSignUpDto,UserUpdateDto } from './dto/user-dto';
 import * as bcrypt from 'bcrypt';
 
@@ -33,23 +32,5 @@ export class UsersService {
     const passwordCheck = await bcrypt.compare(userPassword,user.userPassword)
     if(!passwordCheck) throw new UnauthorizedException("Wrong Credentials");
     return "Login Successful"
-  }
-
-
-  async update(id: number, updateUserDto: Prisma.userUpdateInput) {
-    return this.databaseService.user.update({
-      where:{
-        userid_ :id,
-      },
-      data:updateUserDto
-    })
-  }
-
-  async remove(id: number) {
-    return this.databaseService.user.delete({
-      where:{
-        userid_:id
-      }
-    })
   }
 }

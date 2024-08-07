@@ -18,16 +18,18 @@ model eventManager {
 
 model events {
   eventid_ Int @id @default(autoincrement())
+  eventId String @unique
   title String
   description String
   date DateTime
-  evMangerid_ Int
-  evManger eventManager @relation(fields: [evMangerid_], references: [evmid_])
+  evMangerid_ String
+  evManger eventManager @relation(fields: [evMangerid_], references: [evmUserId])
   booking bookings[]
 }
 
 model user {
   userid_ Int @id @default(autoincrement())
+  userId  String @unique
   userMail  String @unique
   userPassword  String
   name  String
@@ -36,9 +38,9 @@ model user {
 
 model bookings {
   id  Int @id @default(autoincrement())
-  userId  Int
-  eventId Int
+  userId  String
+  eventId String
   ticketCount Int
-  user user @relation(fields: [userId],references: [userid_])
-  event events @relation(fields: [eventId],references: [eventid_])
+  user user @relation(fields: [userId],references: [userId])
+  event events @relation(fields: [eventId],references: [eventId])
 }

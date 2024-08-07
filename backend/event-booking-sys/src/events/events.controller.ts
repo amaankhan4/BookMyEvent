@@ -4,8 +4,4 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 @Controller('events')
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
-  @Post('create')
-  async createEvent(){
-    
-  }
 }

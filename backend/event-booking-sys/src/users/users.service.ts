@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
-import { UserLoginDto,UserSignUpDto,UserUpdateDto } from './dto/user-dto';
+import { UserLoginDto,UserSignUpDto } from './dto/user-dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()

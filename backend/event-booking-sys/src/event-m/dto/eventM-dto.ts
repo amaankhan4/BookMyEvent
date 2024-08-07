@@ -1,10 +1,10 @@
-import { IsAlpha, IsAlphanumeric, IsEmail, IsOptional, IsStrongPassword } from "class-validator";
+import { IsAlpha, IsAlphanumeric, IsEmail, IsOptional, IsStrongPassword, IsString } from "class-validator";
 
 export class eventManagerSignUpDto{
     @IsOptional()
     @IsAlpha()
     evmName:string
-    @IsAlphanumeric()
+    @IsString()
     evmUserId:string
     @IsEmail({},{
         message:"Invalid Email Address"
@@ -24,16 +24,4 @@ export class eventManagerLoginDto{
         message:"Invalid Credentials Format"
     })
     evmPassword:string
-}
-
-export class eventManagerUpdateDto{
-    @IsOptional()
-    @IsStrongPassword()
-    evmPassword?:string
-    @IsOptional()
-    @IsAlpha()
-    evmName?:string
-    @IsOptional()
-    @IsEmail()
-    evmEmail?:string
 }

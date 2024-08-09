@@ -1,10 +1,10 @@
 import { BadRequestException, HttpStatus, Injectable, Res, UnauthorizedException, UseGuards} from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
 import { eventManagerLoginDto,eventManagerSignUpDto } from './dto/eventM-dto';
-import { CreateEventDto } from 'src/events/dto/event-dto';
+import { CreateEventDto } from 'src/event-m/dto/event-dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { Response } from 'express';
+import { Response,Request } from 'express';
 
 @Injectable()
 export class EventMService {
@@ -50,10 +50,11 @@ export class EventMService {
     return {
       message: "Login successful",
       status: "success",
+
     };
   }
 
-  async createEvent(createEventDto:CreateEventDto, request){
+  async createEvent(createEventDto:CreateEventDto, request:Request){
     const token = request.cookies['user_token'];
     const user = await this.jwtService.verify(token);
     const managerid:string = user.id;
@@ -67,5 +68,10 @@ export class EventMService {
         evMangerid_:managerid
     }
   })
+  return {
+    message:"Event Created",
+    status:HttpStatus.CREATED,
   }
+  }
+
 }

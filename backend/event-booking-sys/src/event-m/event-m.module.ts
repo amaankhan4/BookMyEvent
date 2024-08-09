@@ -6,7 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtStrategy } from 'src/auth/jwt.strategy';
 
 @Module({
-  imports:[DatabaseModule,JwtModule.register({secret:process.env.SECRET_KEY,signOptions:{expiresIn:'1h'}})],
+  imports:[DatabaseModule,JwtModule.register({secret:process.env.SECRET_KEY,signOptions:{expiresIn:'2h'}})],
   controllers: [EventMController],
   providers: [EventMService,jwtStrategy],
 })

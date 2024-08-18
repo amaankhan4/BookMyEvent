@@ -1,6 +1,10 @@
+.main{
+  width: 200dvh;
+}
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f2f5;
+    font-family: 'Arial' sans-serif;
+    background-color: #F5F5F5;
+    color: #212121;
     margin: 0;
     padding: 0;
     display: flex;
@@ -78,3 +82,122 @@ body {
     color: #0056b3;
   }
   
+
+.navbar {
+  height: 10dvh;
+  background-color: #3E2723;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar li {
+  margin: 0 10px;
+}
+
+.navbar li p {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.navbar .logo {
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  padding: 14px 16px;
+}
+
+.navbar .auth-buttons {
+  display: flex;
+}
+
+.navbar .auth-buttons li {
+  margin-left: 10px;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar ul {
+      flex-direction: column;
+      width: 100%;
+      display: none;
+  }
+
+  .navbar ul.active {
+      display: flex;
+  }
+
+  .navbar .auth-buttons {
+      flex-direction: column;
+      width: 100%;
+  }
+
+  .navbar li {
+      width: 100%;
+      text-align: center;
+  }
+
+  .navbar li a {
+      width: 100%;
+      padding: 10px;
+  }
+
+  .menu-icon {
+      display: block;
+  }
+}
+  .hero-section {
+    height: '100vh';
+    display: 'flex';
+    justify-content: 'center';
+    align-items: 'center';
+    position: 'relative';
+  }
+  .hero-overlay {
+    position: 'absolute';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: 'rgba(0; 0; 0; 0.5)';
+    display: 'flex';
+    flex-direction: 'column';
+    justify-content: 'center';
+    align-items: 'center';
+    color: 'white';
+    text-align: 'center';
+  }
+  .hero-overlay h1{
+    font-size: '3rem';
+    margin-bottom: '0.5rem';
+  }
+  .hero-overlay p{
+    font-size: '1.5rem';
+  }
+

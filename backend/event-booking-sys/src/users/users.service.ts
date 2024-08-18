@@ -48,4 +48,35 @@ export class UsersService {
       status: "success",
     };
   }
+
+  async upcomingEvents(){
+    return this.databaseService.events.findMany({})
+  }
+
+  async registerEvent(eventId:string,res:Response,request:Request){
+    const token = res.cookie['user_token']
+    if(!token) throw new UnauthorizedException("Unauthorized")
+    const payload = this.jwtService.verify(token)
+    const userId:string = payload.id
+    const user = await this.databaseService.user.findUnique({
+      where:{
+        userId:userId
+      }
+    })
+    if(!user) throw new UnauthorizedException("Unauthorized")
+    const event = await this.databaseService.events.findUnique({
+      where:{
+        eventId:eventId
+      }
+    })
+    if(!event) throw new BadRequestException("Event does not exist")
+    const ticketCount:number = request.body.ticketCount
+    return await this.databaseService.bookings.create({
+      data:{
+        userId:userId,
+        eventId:eventId,
+        ticketCount:ticketCount
+      },
+    })
+  }
 }

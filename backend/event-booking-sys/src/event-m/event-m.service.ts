@@ -49,13 +49,14 @@ export class EventMService {
     })
     return {
       message: "Login successful",
-      status: "success",
-
+      status: HttpStatus.OK,
     };
   }
 
   async createEvent(createEventDto:CreateEventDto, request:Request){
+    try{
     const token = request.cookies['user_token'];
+    console.log(token);
     const user = await this.jwtService.verify(token);
     const managerid:string = user.id;
     const {eventId,title,description,date} = createEventDto;
@@ -68,6 +69,10 @@ export class EventMService {
         evMangerid_:managerid
     }
   })
+    }catch(e){
+      throw new UnauthorizedException(e);
+      
+    }
   return {
     message:"Event Created",
     status:HttpStatus.CREATED,

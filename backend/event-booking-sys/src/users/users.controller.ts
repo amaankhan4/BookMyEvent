@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res, Req } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Prisma } from '@prisma/client';
 import { UserLoginDto,UserSignUpDto } from './dto/user-dto';
@@ -14,7 +14,15 @@ export class UsersController {
   }
 
   @Post('signup')
-  sugnup(@Body() createuserdto : UserSignUpDto){
+  signup(@Body() createuserdto : UserSignUpDto){
     return this.usersService.signup(createuserdto)
+  }
+  @Get('upcoming-events')
+  upcomingEvents(){
+    return this.usersService.upcomingEvents();
+  }
+  @Post('register-event/:eventId')
+  registerEvent(@Param('eventId') eventId:string,@Res({passthrough:true}) response:Response,@Req() request:Request){
+    return this.usersService.registerEvent(eventId,response,request)
   }
 }
